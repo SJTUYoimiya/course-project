@@ -1,7 +1,6 @@
-clear all
-clc
+close; clear; clc
 
-addpath ../McM/
+addpath ./Pictures/Mcm/
 %%
 filename = 'lena.tif';
 
