@@ -1,3 +1,4 @@
+from typing import Any
 import numpy as np
 import scipy.linalg as la
 
@@ -47,54 +48,78 @@ def OMP(dictionary, sample, sparsity, eps=1e-3):
     return mX_
 
 
-def ArmijoLineSearch(f, x0, dx, alpha=0.3, beta=0.5, max_iter=1000):
-    '''
-    Armijo line search
-    '''
-    y0 = f(x0)
+class DICTLEARN:
+    def __init__(self) -> None:
+        pass
 
-    t = 1
-
-    for _ in range(max_iter):
-        if f(x0 + t * dx) <= y0 - alpha * t * la.norm(dx)**2:
-            break
-        t *= beta
-
-    return t, f(x0 + t * dx)
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        return self.DictLearn(*args, **kwds)
 
 
-def GD(d_, y_, x_, Phi, GradPhi):
-    '''Gradient descent for optimization problem
-    min_d Phi(d)
-    '''
-    f = lambda d: Phi(d, y_, x_)
+    def Phi(self, d, y, x):
+        '''
+        Phi(d) = ||y - d * x||_F^2 / 2
+        '''
+        return la.norm(y - d @ x)**2 / 2
 
-    for _ in range(100):
-        d_tmp = d_
-        phi_tmp = f(d_tmp)
-        grad_d_ = GradPhi(d_, y_, x_)
 
-        t, phi = ArmijoLineSearch(f, d_, -grad_d_)
-        d_ = d_ - t * grad_d_
-
-        if la.norm(d_tmp - d_) < 1e-6 or np.abs((phi - phi_tmp) / phi_tmp) < 1e-6:
-            break
+    def GradPhi(self, d, y, x):
+        '''
+        GradPhi(d) = -2 * (y - d * x) * x.T
+        '''
+        return - (y - d @ x) @ x.T
     
-    return d_
+    def ArmijoLineSearch(self, f, x0, dx, alpha=0.3, beta=0.5, max_iter=1000):
+        '''
+        Armijo line search
+        '''
+        y0 = f(x0)
+
+        t = 1
+
+        for _ in range(max_iter):
+            if f(x0 + t * dx) <= y0 - alpha * t * la.norm(dx)**2:
+                break
+            t *= beta
+
+        return t, f(x0 + t * dx)
 
 
-def DictLearn(mD, mX, patches, Phi, GradPhi):
-    for i in range(mD.shape[1]):
-        indices = np.where(mX[i, :] != 0)[0]
+    def GD(self, d_, y_, x_):
+        '''Gradient descent for optimization problem
+        min_d Phi(d)
+        '''
+        f = lambda d: self.Phi(d, y_, x_)
 
-        if indices.size == 0:
-            continue
+        for _ in range(100):
+            d_tmp = d_
+            phi_tmp = f(d_tmp)
+            grad_d_ = self.GradPhi(d_, y_, x_)
 
-        y_ = patches[:, indices]
-        x_ = mX[i, indices].reshape(1, -1)
-        d_ = mD[:, i].reshape(-1, 1)
+            t, phi = self.ArmijoLineSearch(f, d_, -grad_d_)
+            d_ = d_ - t * grad_d_
 
-        d_ = GD(d_, y_, x_, Phi, GradPhi).reshape(-1)
-        mD[:, i] = d_ / la.norm(d_)
+            if la.norm(d_tmp - d_) < 1e-6 or np.abs((phi - phi_tmp) / phi_tmp) < 1e-6:
+                break
+        
+        return d_
+
+
+    def DictLearn(self, mD, mX, patches):
+        for i in range(mD.shape[1]):
+            indices = np.where(mX[i, :] != 0)[0]
+
+            if indices.size == 0:
+                continue
+
+            y_ = patches[:, indices]
+            x_ = mX[i, indices].reshape(1, -1)
+            d_ = mD[:, i].reshape(-1, 1)
+
+            d_ = self.GD(d_, y_, x_).reshape(-1)
+            mD[:, i] = d_ / la.norm(d_)
+        
+        return mD
     
-    return mD
+
+DictLearn = DICTLEARN()

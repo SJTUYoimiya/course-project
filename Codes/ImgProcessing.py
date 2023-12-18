@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 This file is used to transform the image into patches and vice versa.
 '''
 
-class Img2patch:
+class IMG2PATCH:
     def __init__(self):
         pass
     
@@ -113,7 +113,8 @@ class Img2patch:
         return img_
 
 
-Img2patch = Img2patch()
+Img2patch = IMG2PATCH()
+
 
 def Showing(*args, cmap='gray'):
     RGBs = ['Red Channel', 'Green Channel', 'Blue Channel']
