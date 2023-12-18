@@ -49,8 +49,11 @@ def OMP(dictionary, sample, sparsity, eps=1e-3):
 
 
 class DICTLEARN:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, alpha=0.5, beta=0.5, max_iter=1000, eps=1e-3):
+        self.alpha = alpha
+        self.beta = beta
+        self.max_iter = max_iter
+        self.eps = eps
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return self.DictLearn(*args, **kwds)
@@ -62,14 +65,14 @@ class DICTLEARN:
         '''
         return la.norm(y - d @ x)**2 / 2
 
-
     def GradPhi(self, d, y, x):
         '''
         GradPhi(d) = -2 * (y - d * x) * x.T
         '''
         return - (y - d @ x) @ x.T
     
-    def ArmijoLineSearch(self, f, x0, dx, alpha=0.3, beta=0.5, max_iter=1000):
+
+    def ArmijoLineSearch(self, f, x0, dx):
         '''
         Armijo line search
         '''
@@ -77,10 +80,10 @@ class DICTLEARN:
 
         t = 1
 
-        for _ in range(max_iter):
-            if f(x0 + t * dx) <= y0 - alpha * t * la.norm(dx)**2:
+        for _ in range(self.max_iter):
+            if f(x0 + t * dx) <= y0 - self.alpha * t * la.norm(dx)**2:
                 break
-            t *= beta
+            t *= self.beta
 
         return t, f(x0 + t * dx)
 
@@ -99,7 +102,7 @@ class DICTLEARN:
             t, phi = self.ArmijoLineSearch(f, d_, -grad_d_)
             d_ = d_ - t * grad_d_
 
-            if la.norm(d_tmp - d_) < 1e-6 or np.abs((phi - phi_tmp) / phi_tmp) < 1e-6:
+            if la.norm(d_tmp - d_) < self.eps or np.abs((phi - phi_tmp) / phi_tmp) < self.eps:
                 break
         
         return d_
@@ -123,3 +126,37 @@ class DICTLEARN:
     
 
 DictLearn = DICTLEARN()
+
+
+def KSVD(patches, dictionary, sparsity, iteration=10, eps=1e-6):
+    '''
+    K-SVD algorithm
+
+    Parameters
+    ----------
+    patches : numpy.ndarray
+        The patches
+    sparsity : int
+        The sparsity
+    dictionary : numpy.ndarray
+        The dictionary
+    max_iter : int
+        The maximum number of iterations
+    eps : float
+        The threshold
+
+    Returns
+    -------
+    mD : numpy.ndarray
+        The dictionary
+    mX : numpy.ndarray
+        The sparse representation
+    '''
+    mD = dictionary
+    mX = OMP(mD, patches, sparsity, eps)
+
+    for _ in range(iteration):
+        mD = DictLearn(mD, mX, patches)
+        mX = OMP(mD, patches, sparsity, eps)
+    
+    return mD @ mX, mD, mX

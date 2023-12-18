@@ -125,7 +125,7 @@ def Showing(*args, cmap='gray'):
         for color in range(3):
             img_[:, :, color] = args[color]
         
-        img_ = img_.astype(int)
+        # img_ = img_.astype(int)
         plt.imshow(img_)
     elif cmap == 'gray' :
         plt.imshow(*args, cmap=cmap)
