@@ -2,50 +2,46 @@ from typing import Any
 import numpy as np
 import scipy.linalg as la
 
-def OMP(dictionary, sample, sparsity, eps=1e-3):
+def OMP(signal, mD, sparsity, eps=1e-3):
     '''
-    Orthogonal Matching Pursuit
+    Orthogonal Matching Pursuit (OMP) algorithm
 
     Parameters
     ----------
-    dictionary : numpy.ndarray
-        The dictionary
-    sample : numpy.ndarray
-        The sample
+    signal : numpy.ndarray
+        The signal matrix
+    mD : numpy.ndarray
+        The dictionary matrix
     sparsity : int
-        The sparsity
-    eps : float
-        The threshold
+        The sparsity of the sparse representation
+    eps : float, optional
+        The threshold of the residual, by default 1e-3
 
     Returns
     -------
-    x : numpy.ndarray
-        The sparse representation
+    X : numpy.ndarray
+        The sparse representation matrix
     '''
-    # Initialization
-    mX_ = np.zeros((dictionary.shape[1], sample.shape[1]))
+    _mX = []
 
-    for i in range(sample.shape[1]):
-        sample_ = sample[:, i]     # The sample
-        coding = mX_[:, i]        # The sparse representation
+    for i in range(signal.shape[1]):
+        # OMP algorithm for the i-th signal
+        # Initialize the sparse representation x = 0 & residual r = y
+        _x = np.zeros(mD.shape[1])
+        _r = signal[:, i].copy()
 
-        # Initialize the residual
-        r = sample_
-        iteration = 0
-        
-        while iteration <= sparsity:
-            j = np.argmax(np.abs(dictionary.T @ r))
-            coding[j] += dictionary[:, j].T @ r
-            r = r - dictionary[:, j] * (dictionary[:, j].T @ r)
+        for _ in range(sparsity+1):    # Iterate at most sparsity times
+            _k = np.argmax(np.abs(mD.T @ _r))
+            _x[_k] += mD[:, _k].T @ _r
+            _r -= mD[:, _k] * (mD[:, _k].T @ _r)
 
-            if la.norm(r) < eps:    # If the residual is small enough
+            # Stop if |r|_{\infty} < eps
+            if np.max(np.abs(_r)) < eps:
                 break
-
-            iteration += 1
         
-        mX_[:, i] = coding    # Update the sparse representation
-    
-    return mX_
+        _mX.append(_x.reshape(-1, 1))   # Add to the sparse representation matrix
+
+    return np.concatenate(_mX, axis=1)
 
 
 class DICTLEARN:
@@ -123,12 +119,9 @@ class DICTLEARN:
             mD[:, i] = d_ / la.norm(d_)
         
         return mD
-    
-
-DictLearn = DICTLEARN()
 
 
-def KSVD(patches, dictionary, sparsity, iteration=10, eps=1e-6):
+def KSVD(patches, dictionary, sparsity, _iteration=10, eps=1e-6):
     '''
     K-SVD algorithm
 
@@ -152,10 +145,12 @@ def KSVD(patches, dictionary, sparsity, iteration=10, eps=1e-6):
     mX : numpy.ndarray
         The sparse representation
     '''
-    mD = dictionary
-    mX = OMP(mD, patches, sparsity, eps)
+    DictLearn = DICTLEARN(eps=eps)
 
-    for _ in range(iteration):
+    mD = dictionary
+    mX = OMP(patches, mD, sparsity, eps)
+
+    for _ in range(_iteration):
         mD = DictLearn(mD, mX, patches)
         mX = OMP(mD, patches, sparsity, eps)
     

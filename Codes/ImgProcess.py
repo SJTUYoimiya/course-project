@@ -44,9 +44,10 @@ class IMG2PATCH:
         # Calculate the coordinates of the upper left corner of patch
         _nh = (h - s) // (d - s) + 1
         _nl = (l - s) // (d - s) + 1
-        _loc_y = np.linspace(0, h - d, _nh).astype(int)
-        _loc_x = np.linspace(0, l - d, _nl).astype(int)
-        _locs = np.meshgrid(_loc_x, _loc_y)
+        loc_y = np.linspace(0, h - d, _nh).astype(int)
+        loc_x = np.linspace(0, l - d, _nl).astype(int)
+
+        _locs = np.meshgrid(loc_x, loc_y)
         _loc_x = _locs[0].flatten()
         _loc_y = _locs[1].flatten()
 
@@ -67,7 +68,7 @@ class IMG2PATCH:
             _patches.append(_patch)
 
         _patches = np.concatenate(_patches, axis=1)
-        return _patches, _locs, _dcs
+        return _patches, [loc_x, loc_y], _dcs
     
     
     def Patch2Img(self, patches, locs, dcs):
