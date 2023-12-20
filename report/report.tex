@@ -1,0 +1,256 @@
+% !TEX encoding = UTF-8
+% !TEX program = xelatex
+
+\documentclass[a4paper,11pt]{article}
+
+%%% packages--------------------------------------------------------------------------------------
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+%\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage{booktabs}
+
+\usepackage{float}
+
+\usepackage{graphicx} %Loading the package
+%\graphicspath{{../../_figures/}}
+% \graphicspath{{../../_tikz_plot/}}
+
+
+\usepackage{lecturenoteStyle_2023}
+
+
+
+% \usepackage[sorting=none, backend=bibtex]{biblatex}
+% \addbibresource{bib.bib}
+ 
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\bf Report Template}
+\author{Provide your names in alphabetic order}
+\date{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+
+\maketitle
+
+
+%\vspace{-2cm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+In the introduction, the following contents (but not limited to) should be included
+\begin{itemize}
+\item Your dictionary learning model, please provide references related to your model;
+\item The optimization algorithm, please provide references relate to your algorithms;
+\item Basic summary of your obtained results.
+\end{itemize}
+
+\begin{remark}
+The above contents are basically ``Task 1''.
+\end{remark}
+
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Barbara]{ \includegraphics[width=55mm]{blank.png} }  
+\subfloat[Cameraman]{ \includegraphics[width=55mm]{blank.png} }  
+\subfloat[Lena]{ \includegraphics[width=55mm]{blank.png} }  \\ 
+%%%%%%%%%%%%%%%
+\caption{Dictionary learned from three grayscale images.}
+\label{fig:dl_gray}
+\end{figure}
+
+
+
+\section{Numerical results}
+
+For each task, we provide below the template of summarizing your result and how we rank the results. 
+
+%\vskip3mm
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=58mm]{blank.png}  \\ 
+%%%%%%%%%%%%%%%%
+%\caption{Caption texts.}
+%\label{fig:mcm}
+%\end{figure}
+%
+%
+%\begin{figure}[!ht]
+%\centering
+%\subfloat[Barbara]{ \includegraphics[width=42mm]{blank.png} }  
+%\subfloat[Cameraman]{ \includegraphics[width=42mm]{blank.png} }  
+%\subfloat[Lena]{ \includegraphics[width=42mm]{blank.png} }  \\ 
+%%%%%%%%%%%%%%%%
+%\caption{Caption texts.}
+%\label{fig:grayimg}
+%\end{figure}
+
+
+
+\subsection{Task 3: color images denoising}
+
+{\color{red} {\bf ALERT:} the noised images for denoising are now updated, in {\tt mat} file format, please use the new data in the {\tt project.zip} file.} 
+
+
+For color image denoising, please summarize your result in Table \ref{tab:result_task3}. The result in the table is what I obtained using the sample code provided in the {\tt project.zip} file (of course extended to the color images). 
+
+\begin{remark}
+The parameters I used are not tuned for each image, so in principle the results you obtain should be BETTER than mine.
+\end{remark}
+
+\begin{table}[h]
+\centering
+\caption{PSNR values of 18 McM images.}
+\label{tab:result_task3}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & Red Channel & Green Channel & Blue Channel & Average of three \\ \hline
+McM01 & 27.96 & 27.42 & 27.02 & 27.02 \\ \hline
+McM02 & 31.75 & 32.68 & 31.34 & 31.34 \\ \hline
+McM03 & 31.47 & 31.16 & 30.18 & 30.18 \\ \hline
+McM04 & 34.06 & 34.79 & 32.94 & 32.94 \\ \hline
+McM05 & 33.27 & 32.64 & 31.34 & 31.34 \\ \hline
+McM06 & 33.80 & 33.13 & 32.82 & 32.82 \\ \hline
+McM07 & 32.66 & 32.80 & 32.02 & 32.02 \\ \hline
+McM08 & 34.68 & 35.08 & 34.69 & 34.69 \\ \hline
+McM09 & 32.47 & 33.23 & 32.87 & 32.87 \\ \hline
+McM10 & 32.68 & 33.02 & 32.72 & 32.72 \\ \hline
+McM11 & 31.99 & 31.29 & 32.65 & 32.65 \\ \hline
+McM12 & 34.53 & 33.79 & 33.63 & 33.63 \\ \hline
+McM13 & 35.06 & 35.75 & 33.82 & 33.82 \\ \hline
+McM14 & 33.66 & 34.32 & 32.51 & 32.51 \\ \hline
+McM15 & 32.08 & 33.49 & 33.13 & 33.13 \\ \hline
+McM16 & 30.30 & 28.47 & 30.69 & 30.69 \\ \hline
+McM17 & 30.22 & 30.28 & 30.52 & 30.52 \\ \hline
+McM18 & 31.45 & 31.02 & 33.35 & 33.35 \\ \hline
+\end{tabular}
+%
+\end{table}
+
+
+
+In comparison, the psnr values of the {\bf NEW} noisy images are provided in Table \ref{tab:noisy_task3}. 
+
+\begin{table}[h]
+\centering
+\caption{PSNR values of 18 noised McM images.}
+\label{tab:noisy_task3}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & Red Channel & Green Channel & Blue Channel & Average of three \\ \hline
+McM01 & 22.10 & 22.08 & 22.12 & 22.12 \\ \hline
+McM02 & 22.09 & 22.12 & 22.12 & 22.12 \\ \hline
+McM03 & 22.11 & 22.12 & 22.11 & 22.11 \\ \hline
+McM04 & 22.10 & 22.12 & 22.14 & 22.14 \\ \hline
+McM05 & 22.11 & 22.10 & 22.12 & 22.12 \\ \hline
+McM06 & 22.10 & 22.11 & 22.12 & 22.12 \\ \hline
+McM07 & 22.10 & 22.12 & 22.13 & 22.13 \\ \hline
+McM08 & 22.10 & 22.12 & 22.11 & 22.11 \\ \hline
+McM09 & 22.11 & 22.11 & 22.09 & 22.09 \\ \hline
+McM10 & 22.10 & 22.13 & 22.12 & 22.12 \\ \hline
+McM11 & 22.12 & 22.11 & 22.11 & 22.11 \\ \hline
+McM12 & 22.13 & 22.11 & 22.10 & 22.10 \\ \hline
+McM13 & 22.10 & 22.09 & 22.12 & 22.12 \\ \hline
+McM14 & 22.11 & 22.10 & 22.10 & 22.10 \\ \hline
+McM15 & 22.12 & 22.10 & 22.13 & 22.13 \\ \hline
+McM16 & 22.09 & 22.09 & 22.11 & 22.11 \\ \hline
+McM17 & 22.11 & 22.11 & 22.10 & 22.10 \\ \hline
+McM18 & 22.12 & 22.12 & 22.13 & 22.13 \\ \hline
+\end{tabular}
+%
+\end{table}
+
+\paragraph{Ranking} 
+How we rank the result: For each image, we will rank the {\bf average PSNR} value result of each image, the final rank of a group is based on the weighted sum of its ranking of the 18 images. 
+
+
+\clearpage
+
+
+
+
+
+
+\subsection{Task 4: unknown ground truth}
+
+
+{\color{red} {\bf ALERT:} the noised images for denoising are now updated, in {\tt mat} file format, please use the new data.} 
+
+
+For color image denoising, please summarize your result in the following table. The result in the table is what I obtained using the sample code provided in the {\tt project.zip} file. 
+
+\begin{table}[h]
+\centering
+\caption{PSNR values of 18 McM images.}
+\label{tab:result_task4}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & Red Channel & Green Channel & Blue Channel & Average of three \\ \hline
+McM01 &  &  &  &  \\ \hline
+McM02 &  &  &  &  \\ \hline
+McM03 &  &  &  &  \\ \hline
+McM04 &  &  &  &  \\ \hline
+McM05 &  &  &  &  \\ \hline
+McM06 &  &  &  &  \\ \hline
+McM07 &  &  &  &  \\ \hline
+McM08 &  &  &  &  \\ \hline
+McM09 &  &  &  &  \\ \hline
+McM10 &  &  &  &  \\ \hline
+McM11 &  &  &  &  \\ \hline
+McM12 &  &  &  &  \\ \hline
+McM13 &  &  &  &  \\ \hline
+McM14 &  &  &  &  \\ \hline
+McM15 &  &  &  &  \\ \hline
+McM16 &  &  &  &  \\ \hline
+McM17 &  &  &  &  \\ \hline
+McM18 &  &  &  &  \\ \hline
+\end{tabular}
+%
+\end{table}
+
+
+
+\paragraph{Ranking} 
+How we rank the result: For each image, we will rank the {\bf average PSNR} value result of each image, the final rank of a group is based on the weighted sum of its ranking of the 18 images. 
+
+
+
+
+\clearpage
+
+
+\section{Conclusion}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
+\bibliography{bib}
+
+\end{document}
+
+
+
