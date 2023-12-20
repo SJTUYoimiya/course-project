@@ -43,7 +43,7 @@ def OMP(signal, mD, sparsity, eps=1e-3):
     return np.concatenate(_mX, axis=1)
 
 
-class DICTLEARN:
+class DICTUPDATE:
     def __init__(self, alpha=0.5, beta=0.5, max_iter=1000, eps=1e-3):
         self.alpha = alpha
         self.beta = beta
@@ -51,10 +51,10 @@ class DICTLEARN:
         self.eps = eps
 
     def __call__(self, patches, mD, mX):
-        return self.DictLearn(patches, mD, mX)
+        return self.DictUpdate(patches, mD, mX)
 
 
-    def DictLearn(self, patches, mD, mX):
+    def DictUpdate(self, patches, mD, mX):
         for i in range(mD.shape[1]):
             _indices = np.where(mX[i, :] != 0)[0]
 
@@ -115,24 +115,42 @@ class DICTLEARN:
         return _x, f(_x)
 
 
-def KSVD(patches, dictionary, sparsity, _iteration=10, eps=1e-6):
+def KSVD(patches, dictionary, sparsity, iteration=10, eps=1e-6):
     '''
     K-SVD algorithm
 
     Parameters
     ----------
-    
+    patches : numpy.ndarray
+        The patches of the image
+    dictionary : numpy.ndarray
+        The initial dictionary
+    sparsity : int
+        The sparsity of the sparse representation
+    iteration : int, optional
+        The number of iterations, by default 10
+    eps : float, optional
+        The threshold of the residual, by default 1e-6
+
     Returns
     -------
+    mD : numpy.ndarray
+        The dictionary
+    mX : numpy.ndarray
+        The sparse representation
     
     '''
-    DictLearn = DICTLEARN(eps=eps)
+    DictUpdate = DICTUPDATE(eps=eps)
 
     mD = dictionary
 
-    for _ in range(_iteration):
+    for _ in range(iteration):
         if _ > 0:
-            mD = DictLearn(patches, mD, mX)
+            mD = DictUpdate(patches, mD, mX)
         mX = OMP(patches, mD, sparsity, eps)
     
     return mD, mX
+
+
+if __name__ == '__main__':
+    pass

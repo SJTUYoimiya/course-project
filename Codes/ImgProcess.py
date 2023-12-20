@@ -123,7 +123,7 @@ class IMG2PATCH:
 Img2patch = IMG2PATCH()
 
 
-def Showing(*args, cmap='gray'):
+def Show(*args, cmap='gray'):
     args = list(args)   
     for i, arg in enumerate(args):
         _min = np.array([arg.min(), 0]).min()
@@ -146,3 +146,7 @@ def Showing(*args, cmap='gray'):
     
     plt.axis('off')
     plt.show()
+
+
+if __name__ == '__main__':
+    pass
