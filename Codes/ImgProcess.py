@@ -134,13 +134,13 @@ def Show(*args, cmap='gray'):
     if cmap == 'gray' :
         plt.imshow(*args, cmap=cmap)
     else:
-        _RGBs = ['r', 'g', 'b']
+        RGBs = ['r', 'g', 'b']
         _size = args[0].shape
         _img = np.zeros((*_size, 3))
 
-        for _channel in list(cmap):
-            _idx = _RGBs.index(_channel)
-            _img[:, :, _idx] = args[_idx]
+        for i, _channel in enumerate(list(cmap)):
+            _idx = RGBs.index(_channel)
+            _img[:, :, _idx] = args[i]
         
         plt.imshow(_img)
     
@@ -149,4 +149,6 @@ def Show(*args, cmap='gray'):
 
 
 if __name__ == '__main__':
-    pass
+    img = plt.imread('./Images/McM images/McM13.tif')
+    Show(img[:, :, 2], cmap='b')
+    # print(img[:, :, 0].shape)
