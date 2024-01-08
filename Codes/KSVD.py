@@ -155,27 +155,14 @@ def KSVD(patches, dictionary, sparsity, iteration=12, eps=1e-3):
     return mD, mX
 
 
-def Learn(img, size, sparsity, max_iter=10, overlapping=2, mD=None):
+def Learn(img, size, sparsity, max_iter=1, eps=1, overlapping=2, mD=None):
     patches, locs, dcs = Img2patch(img, size, overlapping)
     if mD is None:
         mD = fft.dct(np.eye(2 * size**2), norm='ortho')[: size**2]  # initial dictionary
-    mD, mX = KSVD(patches, mD, sparsity, max_iter)              # learn the dictionary
+    mD, mX = KSVD(patches, mD, sparsity, max_iter, eps=eps)              # learn the dictionary
     img_learned = Img2patch(mD@mX, locs, dcs, inv=True)         # reconstruct the image
     return img_learned, mD
 
 
 if __name__ == '__main__':
-    img = plt.imread('./Images/McM images/McM13.tif')
-    img = img[:, :, 0]
-    img = img / img.max()
-
-    import h5py
-    img_noise = h5py.File('./Images/McM images/McM13_noise.mat', 'r')
-    img_noise = img_noise['u_n'][0].T
-    img_noise = img_noise / img_noise.max()
-
-    _, mD = Learn(img, 13, 16, 20)
-    img_denoised, _ = Learn(img_noise, 13, 4, max_iter=1, mD=mD)
-    # # plt.imsave('./lena.png', img_learned, cmap='gray')
-    from ResultTest import PSNR
-    print(PSNR(img, img_denoised))
+    pass
