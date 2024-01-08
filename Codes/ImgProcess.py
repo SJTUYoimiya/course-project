@@ -133,6 +133,8 @@ def Show(*args, cmap='gray'):
 
     if cmap == 'gray' :
         plt.imshow(*args, cmap=cmap)
+        plt.axis('off')
+        plt.show()
     else:
         RGBs = ['r', 'g', 'b']
         _size = args[0].shape
@@ -143,9 +145,9 @@ def Show(*args, cmap='gray'):
             _img[:, :, _idx] = args[i]
         
         plt.imshow(_img)
-    
-    plt.axis('off')
-    plt.show()
+        plt.axis('off')
+        plt.show()
+        return _img
 
 
 if __name__ == '__main__':
