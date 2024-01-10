@@ -1,3 +1,13 @@
 **/.DS_Store
 /Codes/__pycache__
-/results/dictionaries
+# /results/dictionaries
+
+/results/psnr.xlsx
+
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg

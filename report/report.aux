@@ -1,13 +1,16 @@
 \relax 
+\providecommand\hyper@newdestlabel[2]{}
 \providecommand\babel@aux[2]{}
 \@nameuse{bbl@beforestart}
-\providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -15,25 +18,32 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand*\HyPL@Entry[1]{}
 \HyPL@Entry{0<</S/D>>}
+\providecommand \oddpage@label [2]{}
 \babel@aux{english}{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Dictionary learned from three grayscale images.}}{1}{figure.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Barbara}}}{1}{subfigure.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Cameraman}}}{1}{subfigure.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Lena}}}{1}{subfigure.1.3}\protected@file@percent }
-\newlabel{fig:dl_gray}{{1}{1}{Dictionary learned from three grayscale images}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Numerical results}{1}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task 3: color images denoising}{1}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Ranking}{1}{table.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces PSNR values of 18 McM images.}}{2}{table.1}\protected@file@percent }
-\newlabel{tab:result_task3}{{1}{2}{PSNR values of 18 McM images}{table.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces PSNR values of 18 noised McM images.}}{2}{table.2}\protected@file@percent }
-\newlabel{tab:noisy_task3}{{2}{2}{PSNR values of 18 noised McM images}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Task 4: unknown ground truth}{3}{subsection.2.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces PSNR values of 18 McM images.}}{3}{table.3}\protected@file@percent }
-\newlabel{tab:result_task4}{{3}{3}{PSNR values of 18 McM images}{table.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Ranking}{3}{table.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}算法介绍}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}优化算法：K-SVD 算法}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces K-SVD}}{1}{algocf.1}\protected@file@percent }
+\newlabel{alg:ksvd}{{1}{1}{优化算法：K-SVD 算法}{algocf.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}初始字典：DCT 过完备字典}{1}{subsubsection.1.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}稀疏编码：OMP 算法}{1}{subsubsection.1.1.2}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Orthogonal Matching Pursuit}}{2}{algocf.2}\protected@file@percent }
+\newlabel{alg:omp}{{2}{2}{稀疏编码：OMP 算法}{algocf.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}字典学习方法}{2}{subsection.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Dictionary learned from three grayscale images.}}{2}{figure.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Barbara}}}{2}{subfigure.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Cameraman}}}{2}{subfigure.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Lena}}}{2}{subfigure.1.3}\protected@file@percent }
+\newlabel{fig:dl_gray}{{1}{2}{Dictionary learned from three grayscale images}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}数值结果}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task 3: 彩色图像学习}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces PSNR values of 18 McM images.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:result_task3}{{1}{3}{PSNR values of 18 McM images}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces PSNR values of 18 noised McM images.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:noisy_task3}{{2}{3}{PSNR values of 18 noised McM images}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Task 4: 未知清晰图像情形}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces PSNR values of 18 McM images.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:result_task4}{{3}{4}{PSNR values of 18 McM images}{table.3}{}}
 \bibstyle{plain}
 \bibdata{bib}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Conclusion}{4}{section.3}\protected@file@percent }
-\gdef \@abspage@last{4}
+\@writefile{toc}{\contentsline {section}{\numberline {3}总结}{5}{section.3}\protected@file@percent }
+\gdef \@abspage@last{5}
