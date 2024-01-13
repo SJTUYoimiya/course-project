@@ -62,7 +62,7 @@
 \RequirePackage{float}
 
 % 字体宏包
-\RequirePackage{enumerate}  % 带编号列表
+%\RequirePackage{enumerate}  % 带编号列表
 \RequirePackage{pifont} % 带圈数字
 \RequirePackage{bm} % 同时黑体斜体
 
@@ -171,14 +171,14 @@
 	\noindent \textbf{\heiti 关键词:}
 	}
 	
-\titleformat{\section}
-	{\heiti \zihao{-2} \bfseries \centering} % 字体样式
-	{第 \thesection 章} % 显示章节编号
-	{1em} % 标题和编号之间的间距
-	{} % 之前的代码
-\titlespacing{\section}{0pt}{30pt}{20pt}
-\titlespacing{\subsection}{0pt}{25pt}{12pt}
-\titlespacing{\subsubsection}{0pt}{12pt}{6pt}
+%\titleformat{\section}
+%	{\heiti \zihao{-2} \bfseries \centering} % 字体样式
+%	{第 \thesection 章} % 显示章节编号
+%	{1em} % 标题和编号之间的间距
+%	{} % 之前的代码
+%\titlespacing{\section}{0pt}{30pt}{20pt}
+%\titlespacing{\subsection}{0pt}{25pt}{12pt}
+%\titlespacing{\subsubsection}{0pt}{12pt}{6pt}
 
 \newcommand{\pref}[1]{(\ref{#1})}
 
@@ -229,7 +229,7 @@ postheadspace=\newline
 \newcommand{\Z}{\mathbb{Z}}
 \renewcommand{\phi}{\varphi}
 \newcommand{\eps}{\varepsilon}
-\renewcommand{\empty}{\varnothing}
+\newcommand{\ept}{\varnothing}
 \renewcommand{\hat}[1]{\widehat{#1}}
 \renewcommand{\tilde}[1]{\widetilde{#1}}
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.11.6)  13 JAN 2024 23:52
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.11.6)  14 JAN 2024 00:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -549,10 +549,6 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks32
 \@floatcapt=\box59
 )
-(c:/texlive/2022/texmf-dist/tex/latex/tools/enumerate.sty
-Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks33
-)
 (c:/texlive/2022/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
@@ -633,14 +629,14 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \WF@size=\dimen276
 \c@WF@wrappedlines=\count323
 \WF@box=\box60
-\WF@everypar=\toks34
+\WF@everypar=\toks33
 Package: wrapfig 2003/01/31  v 3.6
 )
 (c:/texlive/2022/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (c:/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (c:/texlive/2022/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks35
+\pgfutil@everybye=\toks34
 \pgfutil@tempdima=\dimen277
 \pgfutil@tempdimb=\dimen278
 
@@ -660,11 +656,11 @@ Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
 Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks36
-\pgfkeys@temptoks=\toks37
+\pgfkeys@pathtoks=\toks35
+\pgfkeys@temptoks=\toks36
 
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks38
+\pgfkeys@tmptoks=\toks37
 ))
 \pgf@x=\dimen279
 \pgf@y=\dimen280
@@ -682,9 +678,9 @@ Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 \c@pgf@countb=\count325
 \c@pgf@countc=\count326
 \c@pgf@countd=\count327
-\t@pgf@toka=\toks39
-\t@pgf@tokb=\toks40
-\t@pgf@tokc=\toks41
+\t@pgf@toka=\toks38
+\t@pgf@tokb=\toks39
+\t@pgf@tokc=\toks40
 \pgf@sys@id@count=\count328
  (c:/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
@@ -736,9 +732,9 @@ Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
 \pgfmath@dimen=\dimen289
 \pgfmath@count=\count332
 \pgfmath@box=\box62
-\pgfmath@toks=\toks42
-\pgfmath@stack@operand=\toks43
-\pgfmath@stack@operation=\toks44
+\pgfmath@toks=\toks41
+\pgfmath@stack@operand=\toks42
+\pgfmath@stack@operation=\toks43
 )
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
@@ -875,8 +871,8 @@ Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen316
 \pgffor@skip=\dimen317
-\pgffor@stack=\toks45
-\pgffor@toks=\toks46
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
 ))
 (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
@@ -981,7 +977,7 @@ Package: titlesec 2021/07/05 v2.14 Sectioning titles
 \aftertitleunit=\skip91
 \ttl@plus=\dimen333
 \ttl@minus=\dimen334
-\ttl@toksa=\toks47
+\ttl@toksa=\toks46
 \titlewidth=\dimen335
 \titlewidthlast=\dimen336
 \titlewidthfirst=\dimen337
@@ -1012,7 +1008,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutheight=\dimen343
 \Gm@layouthoffset=\dimen344
 \Gm@layoutvoffset=\dimen345
-\Gm@dimlist=\toks48
+\Gm@dimlist=\toks47
 )
 (c:/texlive/2022/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
@@ -1049,7 +1045,7 @@ Package: ragged2e 2021/12/15 v3.1 ragged2e Package
 )
 (c:/texlive/2022/texmf-dist/tex/latex/thmtools/thmtools.sty
 Package: thmtools 2020/08/01 v0.72
-\thmt@toks=\toks49
+\thmt@toks=\toks48
 \c@thmt@dummyctr=\count354
 
 (c:/texlive/2022/texmf-dist/tex/latex/thmtools/thm-patch.sty
@@ -1057,7 +1053,7 @@ Package: thm-patch 2020/08/01 v0.72
 
 (c:/texlive/2022/texmf-dist/tex/latex/thmtools/parseargs.sty
 Package: parseargs 2020/08/01 v0.72
-\@parsespec=\toks50
+\@parsespec=\toks49
 ))
 (c:/texlive/2022/texmf-dist/tex/latex/thmtools/thm-kv.sty
 Package: thm-kv 2020/08/01 v0.72
@@ -1082,7 +1078,7 @@ Package: thm-restate 2020/08/01 v0.72
 )
 (c:/texlive/2022/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
 Package: thm-amsthm 2020/08/01 v0.72
-\thmt@style@headstyle=\toks51
+\thmt@style@headstyle=\toks50
 ))
 Package thmtools Info: Key `numberwithin' (with value `section')
 (thmtools)             is not a known style key.
@@ -1110,7 +1106,7 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip119
 \enit@outerparindent=\dimen346
-\enit@toks=\toks52
+\enit@toks=\toks51
 \enit@inbox=\box81
 \enit@count@id=\count361
 \enitdp@description=\count362
@@ -1194,63 +1190,36 @@ Package fontspec Info: Font family 'simhei.ttf(0)' created for font
 .5;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.23 ^^I\item
-              初始化：使用初始预定义字典进行初始化;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
 
 (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 
 
 (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 23
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 35
 .
 
 (c:/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for OMX+yhex on input line 
-23.
+35.
 
 (c:/texlive/2022/texmf-dist/tex/latex/yhmath/OMXyhex.fd
 File: OMXyhex.fd 
 File: OMXyhex.fd 2013/07/03 v1.1 YH's humble contribution to TeX maths (NP)
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 2
-3.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 3
+5.
 
 (c:/texlive/2022/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
-! Missing $ inserted.
-<inserted text> 
-                $
-l.23 ^^I\item
-              初始化：使用初始预定义字典进行初始化;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Undefined control sequence.
-\enit@setresumekeys ...xpandafter {\enit@savekeys 
-                                                  }\xdef \enit@afterlist {#2...
-l.27 \end{enumerate}
-                    
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 
 Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
 (fontspec)             doesn't exist).
@@ -1274,84 +1243,29 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.54 ^^I\item
-              选择 DCT 基: 根据块的规模 $N$，选取 $N$ 阶 DCT 变换矩阵作为初始 DCT 基.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+ [1
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.54 ^^I\item
-              选择 DCT 基: 根据块的规模 $N$，选取 $N$ 阶 DCT 变换矩阵作为初始 DCT 基.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+] [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[1
-
-]
-! Undefined control sequence.
-\enit@setresumekeys ...xpandafter {\enit@savekeys 
-                                                  }\xdef \enit@afterlist {#2...
-l.66 \end{enumerate}
-                    
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.102 ^^I\item
-               选取字典中的原子: 对于每一个字典中的原子（基向量），依次进行更新. 设当前从字典中选择原子 $d_k$.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.102 ^^I\item
-               选取字典中的原子: 对于每一个字典中的原子（基向量），依次进行更新. 设当前从字典中选择原子 $d_k$.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Undefined control sequence.
-\enit@setresumekeys ...xpandafter {\enit@savekeys 
-                                                  }\xdef \enit@afterlist {#2...
-l.114 \end{enumerate}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \vbox (badness 4454) has occurred while \output is active []
-
- [2]
-[3] [4
+ [3]
+[4] [5
 
 ]
 
 Package caption Warning: Unused \captionsetup[figure] on input line 75.
 See the caption package documentation for explanation.
 
-[5
+[6
 
 ] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 24544 strings out of 476179
- 548757 string characters out of 5813072
- 859208 words of memory out of 5000000
- 44726 multiletter control sequences out of 15000+600000
+ 24511 strings out of 476179
+ 547991 string characters out of 5813072
+ 858816 words of memory out of 5000000
+ 44695 multiletter control sequences out of 15000+600000
  481374 words of font info for 129 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,16n,105p,438b,568s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on report.pdf (5 pages).
+Output written on report.pdf (6 pages).
