@@ -1,65 +1,18 @@
 % !TEX encoding = UTF-8
 % !TEX program = xelatex
 
-\documentclass[a4paper,11pt]{article}
-
-%%% packages--------------------------------------------------------------------------------------
-% Language setting
-% Replace `english' with e.g. `spanish' to change the document language
-\usepackage[english]{babel}
-\usepackage{ctex}
-
-% Set page size and margins
-% Replace `letterpaper' with`a4paper' for UK/EU standard size
-%\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-
-% Useful packages
-\usepackage{amsmath} 
-\usepackage{amssymb}
-\usepackage{amstext}
-\usepackage{amsfonts}
-\usepackage{graphicx}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-%\usepackage{booktabs}
-
-\usepackage{float}
-
-\usepackage{graphicx} %Loading the package
-%\graphicspath{{../../_figures/}}
-% \graphicspath{{../../_tikz_plot/}}
-
+\documentclass[10.5pt]{myarticle}
 
 \usepackage{lecturenoteStyle_2023}
 
-\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-\usepackage{algorithmic}
-
-% \usepackage[sorting=none, backend=bibtex]{biblatex}
-% \addbibresource{bib.bib}
- 
- 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{\bf 作业报告——图像去噪的 K-SVD 算法}
+\title{\bf 大作业报告——图像去噪的 K-SVD 算法}
 \author{李梓健、孙天一、檀嘉宸、王子赫、张绍轩}
 \date{}
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-
-
-
+	
 \maketitle
 
-
-%\vspace{-2cm}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{算法介绍}
 
 \subsection{优化算法：K-SVD 算法}
@@ -99,14 +52,14 @@ DCT 过完备字典是 K-SVD 算法中常用的初始字典，它包含了DCT基
 构建过程：
 \begin{enumerate}
 	\item 选择 DCT 基: 根据块的规模 $N$，选取 $N$ 阶 DCT 变换矩阵作为初始 DCT 基. 
-%	\begin{align*}
-%		\mathcal{C} = \left( \cos \left(\frac{2\pi}{N} jk\right) \right)_{j, k = 1, \cdots, N}
-%	\end{align*}
+	\begin{align*}
+		\mathcal{C} = \left( \cos \left(\frac{2\pi}{N} jk\right) \right)_{j, k = 1, \cdots, N}
+	\end{align*}
 	
 	\item 构造过完备字典: 利用以下规则扩展基元素
-%	\begin{align*}
-%		D = \mathcal{C} \otimes \left( \cos \frac{2\pi}{2N} j(2k-1), 1 \right)
-%	\end{align*}
+	\begin{align*}
+		D = \mathcal{C} \otimes \left( \cos \frac{2\pi}{2N} j(2k-1), 1 \right)
+	\end{align*}
 	
 	这相当于对一个 $2N$ 阶 DCT 变换矩阵进行裁切. 
 	\item 归一化: 将字典元素归一化，以避免数值问题. 
@@ -116,9 +69,9 @@ DCT 过完备字典是 K-SVD 算法中常用的初始字典，它包含了DCT基
 OMP（正交匹配追踪）是一种贪婪算法，用于在给定字典的情况下找到信号的稀疏表示。在K-SVD中，它用于确定每个图像块的稀疏系数. 
 
 设输入信号为 $x$，字典为 $D$，OMP 算法的目标是在满足稀疏度的前提下，寻找最优的稀疏表示. 这里最优性是指
-%\begin{align}
-%	\min |x - Da|_2
-%\end{align}
+\begin{align}
+	\min |x - Da|_2
+\end{align}
 
 在本项目中，我们对每条信号（即每个 patch ）都执行 OMP 算法，从而确定整体的稀疏编码 $A: X \approx DA$. 
 
@@ -142,61 +95,42 @@ OMP（正交匹配追踪）是一种贪婪算法，用于在给定字典的情�
 
 \subsection{字典学习方法}
 字典更新是 K-SVD 算法中的核心步骤，目的是优化字典以更好地适应数据. 我们采用的字典更新原则如下: 
+
+~
+
 \begin{enumerate}
 	\item 选取字典中的原子: 对于每一个字典中的原子（基向量），依次进行更新. 设当前从字典中选择原子 $d_k$. 
-	\item 对于当前待更新的原子，找到使用该原子进行稀疏编码的样本。
-	
-	设 $ I_k = \{ j: x_jk \neq 0 \} $，令 $ Y_k = Y_{I_k} $ 表示使用原子 $d_k$ 进行稀疏编码的样本，$X_k = X_{I_k \times k} $ 表示相应稀疏编码的系数.
-	
-	\item 通过梯度下降法优最小化残差，以更新当前选定的原子. 这里优化目标为
+%	\item 对于当前待更新的原子，找到使用该原子进行稀疏编码的样本。
+%	
+%	设 $ I_k = \{ j: x_jk \neq 0 \} $，令 $ Y_k = Y_{I_k} $ 表示使用原子 $d_k$ 进行稀疏编码的样本，$X_k = X_{I_k \times k} $ 表示相应稀疏编码的系数.
+%	
+%	\item 通过梯度下降法优最小化残差，以更新当前选定的原子. 这里优化目标为
 %	\begin{align}
 %		\min_{d_k \in \mathbb{R}^{\mathrm{P}}} \Phi(d_k) = \frac{1}{2} \| Y_k - d_k X_k \|_F^2
 %	\end{align}
-	
-	%			其中 $ \nabla \Phi (d_k) = - (Y_k - d_k X_k) X_k^T $
-	\item 重复迭代: 对所有字典中的原子重复步骤 1-3，直到满足停止条件（如达到最大迭代次数或字典变化不大）
+%	
+%	% 其中 $ \nabla \Phi (d_k) = - (Y_k - d_k X_k) X_k^T $
+%	\item 重复迭代: 对所有字典中的原子重复步骤 1-3，直到满足停止条件（如达到最大迭代次数或字典变化不大）
 \end{enumerate}
 
 以下是从灰色图像中学习到的字典结果
 
-\begin{figure}[H]
-	\centering
-	\subfloat[Barbara]{ \includegraphics[width=55mm]{blank.png} }  
-	\subfloat[Cameraman]{ \includegraphics[width=55mm]{blank.png} }  
-	\subfloat[Lena]{ \includegraphics[width=55mm]{blank.png} }  \\ 
-%%%%%%%%%%%%%%%
-	\caption{Dictionary learned from three grayscale images.}
-	\label{fig:dl_gray}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\subfloat[Barbara]{ \includegraphics[width=55mm]{../results/dictionaries/barbara_512.png} }  
+%	\subfloat[Cameraman]{ \includegraphics[width=55mm]{../results/dictionaries/cameraman_512.png} }  
+%	\subfloat[Lena]{ \includegraphics[width=55mm]{../results/dictionaries/lena_512.png} }  \\ 
+%	\caption{Dictionary learned from three grayscale images.}
+%	\label{fig:dl_gray}
+%\end{figure}
 
-\begin{remark}
-	The above contents are basically ``Task 1''.
-\end{remark}
+%\begin{remark}
+%	The above contents are basically ``Task 1''.
+%\end{remark}
 
 \section{数值结果}
 
 各个任务的数值结果展示如下：
-
-%\vskip3mm
-
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=58mm]{blank.png}  \\ 
-%%%%%%%%%%%%%%%%
-%\caption{Caption texts.}
-%\label{fig:mcm}
-%\end{figure}
-%
-%
-%\begin{figure}[!ht]
-%\centering
-%\subfloat[Barbara]{ \includegraphics[width=42mm]{blank.png} }  
-%\subfloat[Cameraman]{ \includegraphics[width=42mm]{blank.png} }  
-%\subfloat[Lena]{ \includegraphics[width=42mm]{blank.png} }  \\ 
-%%%%%%%%%%%%%%%%
-%\caption{Caption texts.}
-%\label{fig:grayimg}
-%\end{figure}
 
 \subsection{Task 3: 彩色图像学习}
 
@@ -268,9 +202,7 @@ OMP（正交匹配追踪）是一种贪婪算法，用于在给定字典的情�
 
 \subsection{Task 4: 未知清晰图像情形}
 
-For color image denoising, please summarize your result in the following table. The result in the table is what I obtained using the sample code provided in the {\tt project.zip} file. 
-
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\caption{PSNR values of 18 McM images.}
 	\label{tab:result_task4}
@@ -296,18 +228,11 @@ For color image denoising, please summarize your result in the following table. 
 		McM17 &  &  &  &  \\ \hline
 		McM18 &  &  &  &  \\ \hline
 	\end{tabular}
-	%
 \end{table}
 
 \clearpage
 
-
 \section{总结}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{plain}
-\bibliography{bib}
 
 \end{document}
 

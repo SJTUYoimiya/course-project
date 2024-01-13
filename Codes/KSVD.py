@@ -158,8 +158,8 @@ def KSVD(patches, dictionary, sparsity, iteration=12, eps=1e-3):
 def Learn(img, size, sparsity, max_iter=1, eps=1, overlapping=2, mD=None):
     patches, locs, dcs = Img2patch(img, size, overlapping)
     if mD is None:
-        mD = fft.dct(np.eye(2 * size**2), norm='ortho')[: size**2]  # initial dictionary
-    mD, mX = KSVD(patches, mD, sparsity, max_iter, eps=eps)              # learn the dictionary
+        mD = fft.dct(np.eye(2 * size**2), norm='ortho')         # initial dictionary
+    mD, mX = KSVD(patches, mD, sparsity, max_iter, eps=eps)     # learn the dictionary
     img_learned = Img2patch(mD@mX, locs, dcs, inv=True)         # reconstruct the image
     return img_learned, mD
 
