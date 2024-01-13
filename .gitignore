@@ -11,3 +11,5 @@
 *.toc
 *.bbl
 *.blg
+
+/Codes/test.ipynb

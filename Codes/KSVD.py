@@ -4,7 +4,7 @@ import scipy.linalg as la
 from scipy import fft
 from ImgProcess import Img2patch
 
-def OMP(signal, mD, sparsity, eps=1e-3):
+def OMP(signal, mD, sparsity, eps=1e-4):
     '''
     Orthogonal Matching Pursuit (OMP) algorithm
 
@@ -17,7 +17,7 @@ def OMP(signal, mD, sparsity, eps=1e-3):
     sparsity : int
         The sparsity of the sparse representation
     eps : float, optional
-        The threshold of the residual, by default 1e-3
+        The threshold of the residual, by default 1e-4
 
     Returns
     -------
@@ -47,7 +47,7 @@ def OMP(signal, mD, sparsity, eps=1e-3):
 
 
 class DICTUPDATE:
-    def __init__(self, alpha=0.5, beta=0.5, max_iter=1000, eps=1e-3):
+    def __init__(self, alpha=0.5, beta=0.5, max_iter=1000, eps=1e-4):
         self.alpha = alpha
         self.beta = beta
         self.max_iter = max_iter
@@ -118,48 +118,46 @@ class DICTUPDATE:
         return _x, f(_x)
 
 
-def KSVD(patches, dictionary, sparsity, iteration=12, eps=1e-3):
+def KSVD(img, size, sparsity, max_iter=1, eps=1e-4, overlapping=2, mD=None):
     '''
     K-SVD algorithm
 
     Parameters
     ----------
-    patches : numpy.ndarray
-        The patches of the image
-    dictionary : numpy.ndarray
-        The initial dictionary
+    img : numpy.ndarray
+        The image to be learned.
+    size : int
+        The size of the patch.
     sparsity : int
-        The sparsity of the sparse representation
-    iteration : int, optional
-        The number of iterations, by default 10
+        The sparsity of the sparse representation.
+    max_iter : int, optional
+        The maximum number of iterations, by default 1
     eps : float, optional
-        The threshold of the residual, by default 1e-6
+        The threshold of the residual, by default 1e-4
+    overlapping : int, optional
+        The overlapping area of the patches, by default 2
+    mD : numpy.ndarray, optional
+        The initial dictionary, by default None
 
     Returns
     -------
+    img_learned : numpy.ndarray
+        The learned image.
     mD : numpy.ndarray
-        The dictionary
-    mX : numpy.ndarray
-        The sparse representation
-    
+        The learned dictionary.
     '''
+    patches, locs, dcs = Img2patch(img, size, overlapping)
+
+    if mD is None:
+        mD = fft.dct(np.eye(2 * size**2), norm='ortho')         # initial dictionary
+    
     DictUpdate = DICTUPDATE(eps=eps)
 
-    mD = dictionary
-
-    for _ in range(iteration):
-        if _ > 0:
+    for iter in range(max_iter):
+        if iter > 0:
             mD = DictUpdate(patches, mD, mX)
         mX = OMP(patches, mD, sparsity, eps)
     
-    return mD, mX
-
-
-def Learn(img, size, sparsity, max_iter=1, eps=1, overlapping=2, mD=None):
-    patches, locs, dcs = Img2patch(img, size, overlapping)
-    if mD is None:
-        mD = fft.dct(np.eye(2 * size**2), norm='ortho')         # initial dictionary
-    mD, mX = KSVD(patches, mD, sparsity, max_iter, eps=eps)     # learn the dictionary
     img_learned = Img2patch(mD@mX, locs, dcs, inv=True)         # reconstruct the image
     return img_learned, mD
 

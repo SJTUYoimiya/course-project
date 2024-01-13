@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+RGBs = ['r', 'g', 'b']
+
 '''
 This file is used to transform the image into patches and vice versa.
 '''
@@ -26,7 +28,7 @@ class IMG2PATCH:
         img : ndarray
             The image to be divided.
         d : int
-            The _size of the patch.
+            The size of the patch.
         s : int
             Minimum number of overlapping pixels between patches.
 
@@ -44,21 +46,21 @@ class IMG2PATCH:
         # Calculate the coordinates of the upper left corner of patch
         _nh = (h - s) // (d - s) + 1
         _nl = (l - s) // (d - s) + 1
-        loc_y = np.linspace(0, h - d, _nh).astype(int)
-        loc_x = np.linspace(0, l - d, _nl).astype(int)
+        locY = np.linspace(0, h - d, _nh).astype(int)
+        locX = np.linspace(0, l - d, _nl).astype(int)
 
-        _locs = np.meshgrid(loc_x, loc_y)
-        _loc_x = _locs[0].flatten()
-        _loc_y = _locs[1].flatten()
+        _locs = np.meshgrid(locX, locY)
+        _locX = _locs[0].flatten()
+        _locY = _locs[1].flatten()
 
         # Initialization
         _patches = []
         _dcs = []
 
-        for i in range(len(_loc_x)):
+        for i in range(len(_locX)):
             # Get the patch
-            _x = _loc_x[i]
-            _y = _loc_y[i]
+            _x = _locX[i]
+            _y = _locY[i]
             _patch = img[_y: _y+d, _x: _x+d].reshape(-1, 1)
 
             # extract the DC component
@@ -68,7 +70,7 @@ class IMG2PATCH:
             _patches.append(_patch)
 
         _patches = np.concatenate(_patches, axis=1)
-        return _patches, [loc_x, loc_y], _dcs
+        return _patches, [locX, locY], _dcs
     
     
     def Patch2Img(self, patches, locs, dcs):
@@ -92,11 +94,11 @@ class IMG2PATCH:
         # Reconstruct the image
         _d = int(patches.shape[0]**0.5)
 
-        _loc_x, _loc_y = locs
-        _nl = len(_loc_x)
-        _nh = len(_loc_y)
-        _l = _loc_x[-1] + _d
-        _h = _loc_y[-1] + _d
+        _locX, _locY = locs
+        _nl = len(_locX)
+        _nh = len(_locY)
+        _l = _locX[-1] + _d
+        _h = _locY[-1] + _d
 
         _img = np.zeros((_h, _l))
         # Put the patch back in its place
@@ -105,17 +107,17 @@ class IMG2PATCH:
             _patch = _patch + dcs[idx]                  # Add the DC component
 
             # Locate the patch
-            _x = _loc_x[idx % _nl]
-            _y = _loc_y[idx // _nl]
+            _x = _locX[idx % _nl]
+            _y = _locY[idx // _nl]
             _img[_y:_y+_d, _x:_x+_d] += _patch
 
 
         # Average the overlapping area
         for j in range(1, _nl):
-            _img[:, _loc_x[j]:_loc_x[j-1]+_d] = _img[:, _loc_x[j]:_loc_x[j-1]+_d] / 2
+            _img[:, _locX[j]:_locX[j-1]+_d] = _img[:, _locX[j]:_locX[j-1]+_d] / 2
 
         for i in range(1, _nh):
-            _img[_loc_y[i]:_loc_y[i-1]+_d, :] = _img[_loc_y[i]:_loc_y[i-1]+_d, :] / 2
+            _img[_locY[i]:_locY[i-1]+_d, :] = _img[_locY[i]:_locY[i-1]+_d, :] / 2
 
         return _img
 
@@ -150,8 +152,5 @@ def Show(*args, cmap='gray'):
         plt.show()
         return _img
 
-
 if __name__ == '__main__':
-    img = plt.imread('./Images/McM images/McM13.tif')
-    Show(img[:, :, 2], cmap='b')
-    # print(img[:, :, 0].shape)
+    pass
